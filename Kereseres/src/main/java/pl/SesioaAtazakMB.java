@@ -148,5 +148,9 @@ public class SesioaAtazakMB implements Serializable {
             e.printStackTrace();
         }
     }
+	
+	public void saioaItxi() {
+		erabiltzailea= null;
+	}
 
 }
