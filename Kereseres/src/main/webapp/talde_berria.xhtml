@@ -10,10 +10,14 @@
  
 </head>
 <header>
-	<div class="user-info">
-		<span>Bienvenido, Nombre de Usuario</span>
-		<button class="logout-button">Saioa itxi</button>
-	</div>
+    <div class="user-info">
+        <span class="user-photo"></span>
+        <span class="user-name">Nombre de Usuario</span>
+    </div>
+    <div class="buttons">
+        <button class="logout-button">Saioa Itxi</button>
+        <button class="logout-button">Taldea Aldatu</button>
+    </div>
 </header>
 
 <body>
@@ -24,7 +28,7 @@
 	           	<br />
 				Pasahitza: <h:inputSecret value="#{taldeBerriaFormMB.pasahitza}" /><br />
 				 <br />
-	           	<h:commandButton actionListener="#{taldeAtazakMB.taldeBerriaSortu(taldeBerriaFormMB, sesioaAtazakMB)}" value="Talde berri bat gehitu" />
+	           	<h:commandButton class="my-command-button" actionListener="#{taldeAtazakMB.taldeBerriaSortu(taldeBerriaFormMB, sesioaAtazakMB)}" value="Talde berri bat gehitu" />
 			</h:form>
 			<br />
             	<h:panelGroup rendered="#{taldeAtazakMB.kodea==1}"><h:outputText value="#{taldeAtazakMB.mezua}" /> </h:panelGroup>

@@ -19,13 +19,33 @@ body {
 }
 
 /* Estilos para el encabezado */
+/* Estilos para el encabezado */
 header {
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-        background-color: rgba(255, 255, 255, 0.5);
-    margin: 50px;
-    padding: 0;
+    background-color: rgba(255, 255, 255, 0.5); /* Color de fondo del encabezado */
+    color: #000000; /* Color del texto */
+    padding: 10px; /* Espaciado interno */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilos para la información del usuario */
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info .user-photo {
+    width: 40px; /* Tamaño de la foto del usuario */
+    height: 40px; /* Tamaño de la foto del usuario */
+    border-radius: 50%; /* Borde redondeado para la foto del usuario */
+    margin-right: 10px; /* Espaciado a la derecha */
+    background-image: url('ARGAZKIAK/ojan.png'); /* URL de la foto del usuario */
+    background-size: cover; /* Ajustar la imagen al contenedor */
+}
+
+.user-info .user-name {
+    font-size: 18px; /* Tamaño del nombre de usuario */
 }
 
 /* Estilos para los botones */
@@ -65,17 +85,19 @@ h1 {
         7px 7px 0 #ff75a2,     /* Sombra superior izquierda - Rosa claro */
         8px 8px 0 #ff75a2,     /* Sombra superior izquierda - Rosa claro */
         9px 9px 0 #ff75a2;     /* Sombra superior izquierda - Rosa claro */
-    font-size: 60px;
+    font-size: 80px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
     font-family: cursive, sans-serif;
 }
-
+/* Estilos para h2 */
 h2 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-size: 40px; /* Tamaño de fuente */
+    margin-bottom: 20px; /* Espaciado inferior */
+    color: #333333; /* Color del texto */
+    font-family: cursive, sans-serif; /* Familia de fuentes */
+    font-weight: bold; /* Peso de la fuente */
 }
 
 /* Estilos para los selects */
@@ -111,23 +133,77 @@ select,
     background-color: #ccc;
 }
 
-/* Estilos para las tablas */
+/* Estilos para tablas */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    width: 100%; /* Ancho total */
+    border-collapse: collapse; /* Fusionar bordes de celdas */
+    margin-bottom: 20px; /* Espaciado inferior */
 }
 
-th,
-td {
-    padding: 10px;
-    border: 1px solid #ccc;
+/* Estilos para las celdas de encabezado y de datos */
+th, td {
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde */
 }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
+/* Estilos para las celdas de encabezado */
+th {
+    background-color: #f2f2f2; /* Color de fondo */
+    font-weight: bold; /* Texto en negrita */
+    text-align: center; /* Alineación en el centro */
 }
 
+tr{
+	background-color: #f4f4f4; /* Color de fondo */
+}
+
+/* Estilos al pasar el mouse por encima de las filas */
 tr:hover {
-    background-color: #f1f1f1;
+    background-color: #f1f1f1; /* Color de fondo al pasar el mouse */
 }
+
+
+/* Estilos para los formularios */
+form {
+    max-width: 400px; /* Ancho máximo del formulario */
+    margin: 0 auto; /* Centrar el formulario en la página */
+    padding: 20px; /* Espaciado interno */
+}
+
+/* Estilos para los campos de entrada */
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interno */
+    margin-bottom: 15px; /* Espaciado inferior */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Borde redondeado */
+    box-sizing: border-box; /* El tamaño total incluye el borde y el relleno */
+}
+
+/* Estilos para los botones */
+input[type="submit"],
+button {
+    background-color: #df2546; /* Color de fondo del botón */
+    color: #ffffff; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    border-radius: 4px; /* Borde redondeado */
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+}
+
+/* Estilos para los botones al pasar por encima */
+input[type="submit"]:hover,
+button:hover {
+    background-color: #31c97c; /* Color de fondo al pasar por encima */
+}
+
+/* Estilos para los botones al hacer clic */
+input[type="submit"]:active,
+button:active {
+    background-color: #0056b3; /* Color de fondo al hacer clic */
+}
+
