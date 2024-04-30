@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<link href="estiloak.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Zereginak</title>
+
+</head>
+
+<body>
+    <h1>Zereginak</h1>
+    <div class="container">
+    
+        <div>
+            <h2>Esleitutako zereginak</h2>
+            	<h:panelGroup rendered="#{zereginakViewMB.esleitutakoZereginakLortuDB().size()>0}">
+					<h:dataTable value="#{zereginakViewMB.esleitutakoZereginakLortuDB()}" var="zereginak">
+						<h:column>
+							<f:facet name="header">Zeregina</f:facet>
+								#{zereginak.izena}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nork?</f:facet>
+							#{zereginak.erlazioaE.erabiltzaileaE.izena}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Ordu kopurua</f:facet>
+							#{zereginak.ordu_kopurua}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Eginda</f:facet>
+								<h:form>
+									<h:commandButton actionListener="#{zereginaAtazakMB.zereginaEgindaJarriDB(zereginak,zereginakViewMB)}" value="Eginda jarri" />
+								</h:form>
+						</h:column>
+					</h:dataTable>
+			</h:panelGroup>
+        </div>
+        
+      
+        <div>
+            <h2>Esleitu gabeko zereginak</h2>
+            	<h:panelGroup rendered="#{zereginakViewMB.esleituGabekoZereginakLortuDB(taldeAtazakMB).size()>0}">
+					<h:dataTable value="#{zereginakViewMB.esleituGabekoZereginakLortuDB(taldeAtazakMB)}" var="zereginak">
+						<h:column>
+							<f:facet name="header">Zeregina</f:facet>
+								#{zereginak.izena}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Ordu kopurua</f:facet>
+							#{zereginak.ordu_kopurua}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Eginda</f:facet>
+								<h:form>
+									<h:selectOneMenu value="#{zereginaFormMB.idErab}">
+											<f:selectItems value="#{zereginakViewMB.taldearenErabiltzaileakLortuDB(taldeAtazakMB)}" var="erab" itemValue="#{zereginakViewMB.erabiltzaileakLortuDB().indexOf(erab)}" itemLabel="#{erab.izena}"></f:selectItems>
+										</h:selectOneMenu>
+									<h:commandButton actionListener="#{zereginaAtazakMB.zereginaEsleitutaJarriDB(zereginak,zereginakViewMB,zereginaFormMB,taldeAtazakMB)}" value="Esleituta jarri" />
+								</h:form>
+						</h:column>
+					</h:dataTable>
+			</h:panelGroup>
+            
+         
+        </div>
+    </div>
+    <br /> 
+    <div>
+		<h:form style="text-align: center;">
+        <button class="button">Estatistikak ikusi</button>
+ 		</h:form>
+        
+    </div>
+   <br />
+    <div class="container">
+            <h2>Zeregina gehitu</h2>
+             <h:form>
+	           	Izena: <h:inputText value="#{zereginaFormMB.izena}" /><br />
+				Ordu kopurua: <h:inputText value="#{zereginaFormMB.ordukop}" /><br />
+				 <br />
+	           	<h:commandButton actionListener="#{zereginaAtazakMB.zereginBerriaSartuDB(zereginaFormMB,zereginakViewMB,taldeAtazakMB,sesioaAtazakMB)}" value="Zeregin berri bat gehitu" />
+			</h:form>
+            	
+        </div>
+        <h:form>
+        	<h:commandButton action="estadistikak.xhtml" value="Estatistikak ikusi" />
+        </h:form>
+</body>
+</html>

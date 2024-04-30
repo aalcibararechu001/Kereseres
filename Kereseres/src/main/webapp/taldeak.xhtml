@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<link href="estiloak.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Taldeak</title>
+ 
+</head>
+
+<body> 
+    
+        <h1>Taldeak</h1>
+        <div class="container">
+        <h:dataTable value="#{taldeaViewMB.erabiltzailearenTaldeakLortu(sesioaAtazakMB.erabiltzailea.idErabiltzailea)}" var="taldea" rendered="#{taldeaViewMB.erabiltzailearenTaldeakLortu(sesioaAtazakMB.erabiltzailea.idErabiltzailea).size()>0}">
+        	<h:column>
+        		<f:facet name="header">Taldearen izena</f:facet>
+        		#{taldea.taldeaE.izena}
+        	</h:column>      
+        	<h:column>
+        		<f:facet name="header">Taldera sartu</f:facet>
+        			<h:form><h:commandButton actionListener="#{taldeAtazakMB.talderaSartu(taldea.taldeaE)}" value="Sartu" /></h:form>
+        	</h:column> 
+        </h:dataTable>
+        <h:panelGroup rendered="#{taldeaViewMB.erabiltzailearenTaldeakLortu(sesioaAtazakMB.erabiltzailea.idErabiltzailea).size()==0}"><p>Ez duzu talderik</p></h:panelGroup>
+        
+        <h:form>	             
+        	<h:commandButton action="talde_berria" value="Sortu talde berri bat." />
+        </h:form>
+        <h:form>	             
+        	<h:commandButton action="taldea_bilatu" value="Talde batera sartu." />
+        </h:form>
+    </div>
+</body>
+</html>

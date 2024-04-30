@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<link href="estiloak.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Taldea bilatu</title>
+ 
+</head>
+
+<body>
+    
+        <h1>Taldea bilatu</h1>
+        <br />
+        <h:form>
+        	<h:inputText value="#{taldeAtazakMB.bilatutako_taldea}" />
+        	<h:commandButton action="#{taldeaViewMB.bilatutakoTaldeakLortu(taldeAtazakMB.bilatutako_taldea)}" value="Bilatu taldea" />
+        </h:form>
+        <br />
+        <h:form>
+        	<h:dataTable value="#{taldeaViewMB.bilatutakoTaldeak}" var="taldea">
+        		<h:column>
+        			<f:facet name="header">Taldearen izena</f:facet>
+        			#{taldea.izena}
+        		</h:column>
+        		<h:column>
+        			<f:facet name="header">Taldearen pasahitza</f:facet>
+        			<h:inputSecret value="#{taldeAtazakMB.pasahitza}" />
+        		</h:column>       
+        		<h:column>
+        			<f:facet name="header">Taldera batu</f:facet>
+        			<h:commandButton actionListener="#{taldeAtazakMB.erabiltzaileaTalderaBatu(taldea,sesioaAtazakMB)}" value="Batu taldera" />
+        		</h:column> 
+        	</h:dataTable>
+        </h:form>
+        <h:panelGroup rendered="#{taldeAtazakMB.kodea==1}"><h:outputText value="#{taldeAtazakMB.mezua}" /> </h:panelGroup>
+</body>
+</html>

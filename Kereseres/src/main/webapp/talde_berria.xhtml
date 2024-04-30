@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<link href="estiloak.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Talde berria sortu</title>
+ 
+</head>
+<header>
+	<div class="user-info">
+		<span>Bienvenido, Nombre de Usuario</span>
+		<button class="logout-button">Saioa itxi</button>
+	</div>
+</header>
+
+<body>
+<h1>Talde berria gehitu</h1>
+ <div class="container">
+             <h:form>
+	           	Izena: <h:inputText value="#{taldeBerriaFormMB.taldearen_izena}" /><br />
+	           	<br />
+				Pasahitza: <h:inputSecret value="#{taldeBerriaFormMB.pasahitza}" /><br />
+				 <br />
+	           	<h:commandButton actionListener="#{taldeAtazakMB.taldeBerriaSortu(taldeBerriaFormMB, sesioaAtazakMB)}" value="Talde berri bat gehitu" />
+			</h:form>
+			<br />
+            	<h:panelGroup rendered="#{taldeAtazakMB.kodea==1}"><h:outputText value="#{taldeAtazakMB.mezua}" /> </h:panelGroup>
+        </div>
+</body>
+	
+</html>

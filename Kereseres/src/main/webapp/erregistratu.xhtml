@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<link href="estiloak.css" rel="stylesheet" type="text/css" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Erregistratu</title>
+ 
+</head>
+<body>
+     <div class="container">
+    	<h1>Erregistratu amorch!</h1>
+        <h:form>
+        <div>Izena: <h:inputText value="#{sesioaAtazakMB.izena}" required="true" requiredMessage="ERROREA: Izena eremua derrigorrezkoa da"/></div>
+        <div>Username: <h:inputText value="#{sesioaAtazakMB.username}" required="true" requiredMessage="ERROREA: Izena eremua derrigorrezkoa da"/></div>
+        <br />
+         <div>Pasahitza: <h:inputSecret value="#{sesioaAtazakMB.pasahitza}" required="true" /></div>   	             
+        	<br />
+        <br />  	             
+        	<br />
+        	<br />
+        	<h:commandButton actionListener="#{sesioaAtazakMB.erabiltzaileBerriaDB()}" value="Erregistratu" />
+        </h:form>
+        <br />
+        <h:panelGroup rendered="#{sesioaAtazakMB.kodea==3}"><p style="color:red">Erabiltzaile izena existitzen da, beste bat erabili.</p></h:panelGroup>
+        <h:panelGroup rendered="#{sesioaAtazakMB.kodea==4}"><p style="color:red">Pasahitza okerra da.</p></h:panelGroup>
+        <h:panelGroup rendered="#{sesioaAtazakMB.kodea==5}"><p style="color:green">Erabiltzailea ondo erregistratu da. </p> <a href="index.xhtml">Hasi saioa</a> </h:panelGroup>
+        
+    	 </div>  
+</body>
+</html>

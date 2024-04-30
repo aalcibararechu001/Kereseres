@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<link href="estiloak.css" rel="stylesheet" type="text/css" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hasiera</title>
+ 
+</head>
+<body>
+    <div class="container">
+        <h1>Saioa hasi amorch!</h1>
+        <h:form>
+        <div><h:inputText value="#{sesioaAtazakMB.username}" id="izena" required="true" requiredMessage="ERROREA: Izena eremua derrigorrezkoa da"/></div>
+        <br />
+         <div><h:inputSecret value="#{sesioaAtazakMB.pasahitza}" type="password" placeholder="Pasahitza" required="true" /></div>   	             
+        	<br />
+        	<br />
+        	<h:commandButton actionListener="#{sesioaAtazakMB.SaioaHasi()}" value="Saioa hasi" />
+        </h:form>
+        <br />
+        <h:panelGroup rendered="#{sesioaAtazakMB.kodea==1}"><p style="color:red">Erabiltzaile izena okerra da.</p></h:panelGroup>
+        <h:panelGroup rendered="#{sesioaAtazakMB.kodea==2}"><p style="color:red">Pasahitza okerra da.</p></h:panelGroup>
+        
+        <p>Oraindik ez daukazu konturik?</p> <h:form> <h:commandButton action="erregistratu" value="Erregistratu" />       </h:form> 
+    </div>
+  
+   
+</body>
+</html>
