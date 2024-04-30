@@ -24,12 +24,18 @@ public class ZereginakViewMB implements Serializable {
 	private List<ErabiltzaileaE> erabiltzaileakDB;
 	private List<KereserE> keresergabeDB;
 
+	public List<ErabiltzaileaE> getErabiltzaileakDB() {
+		return erabiltzaileakDB;
+	}
+	public void setErabiltzaileakDB(List<ErabiltzaileaE> erabiltzaileakDB) {
+		this.erabiltzaileakDB = erabiltzaileakDB;
+	}
 	public ZereginakViewMB() {
 		// TODO Auto-generated constructor stub
 	}
-	public List<KereserE> esleitutakoZereginakLortuDB() {
+	public List<KereserE> esleitutakoZereginakLortuDB(TaldeAtazakMB talde_atazak) {
 		if(kereserDB == null) {
-			kereserDB = orokorraEJB.esleitutakoZereginakLortuDB();
+			kereserDB = orokorraEJB.esleitutakoZereginakLortuDB(talde_atazak.getErabiltzailearenTaldea().getIdTaldea());
 		}
 		return kereserDB;
 		

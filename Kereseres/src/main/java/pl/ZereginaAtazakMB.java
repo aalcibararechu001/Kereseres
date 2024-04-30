@@ -1,6 +1,8 @@
 package pl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -44,11 +46,12 @@ public class ZereginaAtazakMB implements Serializable {
 		view.resetView();
 	}
 	
-	public void zereginaEsleitutaJarriDB(KereserE kereserDB, ZereginakViewMB view, ZereginaFormMB form, TaldeAtazakMB taldeAtazak) {
+	public void zereginaEsleitutaJarriDB(KereserE kereserDB, ZereginakViewMB view,int idErab, TaldeAtazakMB taldeAtazak) {
 		TaldeaE taldea=new TaldeaE(0,"kaka","kakita");
-		orokorraEJB.zereginaEsleitutaJarriDB(kereserDB, form.getIdErab()+1,taldea);
+		// List<ErabiltzaileaE> erabiltzaileak = new ArrayList<ErabiltzaileaE>();
+		orokorraEJB.zereginaEsleitutaJarriDB(kereserDB, idErab,taldeAtazak.getErabiltzailearenTaldea(),view.getErabiltzaileakDB());
 		view.resetView();
-		form.resetForm();
+		// form.resetForm();
 	}
 	
 }

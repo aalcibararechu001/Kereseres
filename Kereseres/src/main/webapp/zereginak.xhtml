@@ -17,8 +17,8 @@
     
         <div>
             <h2>Esleitutako zereginak</h2>
-            	<h:panelGroup rendered="#{zereginakViewMB.esleitutakoZereginakLortuDB().size()>0}">
-					<h:dataTable value="#{zereginakViewMB.esleitutakoZereginakLortuDB()}" var="zereginak">
+            	<h:panelGroup rendered="#{zereginakViewMB.esleitutakoZereginakLortuDB(taldeAtazakMB).size()>0}">
+					<h:dataTable value="#{zereginakViewMB.esleitutakoZereginakLortuDB(taldeAtazakMB)}" var="zereginak">
 						<h:column>
 							<f:facet name="header">Zeregina</f:facet>
 								#{zereginak.izena}
@@ -45,6 +45,7 @@
         <div>
             <h2>Esleitu gabeko zereginak</h2>
             	<h:panelGroup rendered="#{zereginakViewMB.esleituGabekoZereginakLortuDB(taldeAtazakMB).size()>0}">
+            	<h:form>
 					<h:dataTable value="#{zereginakViewMB.esleituGabekoZereginakLortuDB(taldeAtazakMB)}" var="zereginak">
 						<h:column>
 							<f:facet name="header">Zeregina</f:facet>
@@ -56,14 +57,15 @@
 						</h:column>
 						<h:column>
 							<f:facet name="header">Eginda</f:facet>
-								<h:form>
+								
 									<h:selectOneMenu value="#{zereginaFormMB.idErab}">
 											<f:selectItems value="#{zereginakViewMB.taldearenErabiltzaileakLortuDB(taldeAtazakMB)}" var="erab" itemValue="#{zereginakViewMB.erabiltzaileakLortuDB().indexOf(erab)}" itemLabel="#{erab.izena}"></f:selectItems>
-										</h:selectOneMenu>
-									<h:commandButton actionListener="#{zereginaAtazakMB.zereginaEsleitutaJarriDB(zereginak,zereginakViewMB,zereginaFormMB,taldeAtazakMB)}" value="Esleituta jarri" />
-								</h:form>
+									</h:selectOneMenu>
+									<h:commandButton actionListener="#{zereginaAtazakMB.zereginaEsleitutaJarriDB(zereginak,zereginakViewMB,zereginaFormMB.idErab,taldeAtazakMB)}" value="Esleituta jarri" />
+								
 						</h:column>
 					</h:dataTable>
+					</h:form>
 			</h:panelGroup>
             
          

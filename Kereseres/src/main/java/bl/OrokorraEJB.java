@@ -37,8 +37,8 @@ public class OrokorraEJB {
 		return (List<KereserE>) em.createNamedQuery("KereserE.findEsleitzeke").setParameter("idTaldea", idTaldea).getResultList();
 	}
 	
-	public List<KereserE> esleitutakoZereginakLortuDB(){
-		return (List<KereserE>) em.createNamedQuery("KereserE.findEsleituta").getResultList();
+	public List<KereserE> esleitutakoZereginakLortuDB(int idTaldea){
+		return (List<KereserE>) em.createNamedQuery("KereserE.findEsleituta").setParameter("idTaldea", idTaldea).getResultList();
 	}
 	
 	public List<ErlazioaE> erabiltzailearenTaldeakDB(int user_id){
@@ -65,16 +65,20 @@ public class OrokorraEJB {
 	public void erabiltzaileBerriaDB(ErabiltzaileaE erabiltzaileberria) {
 		em.persist(erabiltzaileberria);
 	}
-	public void zereginaEsleitutaJarriDB(KereserE kereserDB, int idErab, TaldeaE taldea) {
+	@SuppressWarnings("unchecked")
+	public void zereginaEsleitutaJarriDB(KereserE kereserDB, int idErab, TaldeaE taldea,List<ErabiltzaileaE> taldeko_erabiltzaileak) {
 		
 		/*ErabiltzaileaE erabiltzailea = em.find(ErabiltzaileaE.class, idErab);
 		 	ErlazioaE erlazioa = new ErlazioaE(0,erabiltzailea,taldea);
 		 	em.persist(erlazioa);
 		 */
-		List<ErlazioaE> erlazioaDB = em.createNamedQuery("ErlazioaE.findErlazioa").setParameter("idErab", idErab).setParameter("idTaldea", taldea.getIdTaldea()).getResultList();
+		//System.out.println(taldea.getIzena());
 		
-		System.out.println(erlazioaDB.get(0).getErabiltzaileaE().getIzena());
-		System.out.println(erlazioaDB.get(0).getTaldeaE().getIzena());
+		//List<ErabiltzaileaE> erabiltzaileak = taldearenErabiltzaileakLortuDB(taldea);
+		List<ErlazioaE> erlazioaDB = em.createNamedQuery("ErlazioaE.findErlazioa").setParameter("idErab", taldeko_erabiltzaileak.get(idErab).getIdErabiltzailea()).setParameter("idTaldea", taldea.getIdTaldea()).getResultList();
+		List<ErlazioaE> erlazioak = em.createNamedQuery("ErlazioaE.findAll").getResultList();
+		
+		//System.out.println(erlazioaDB.get(0).getTaldeaE().getIzena());
 		
 		kereserDB.setEsleituta(true);
 		kereserDB.setErlazioaE(erlazioaDB.get(0));
