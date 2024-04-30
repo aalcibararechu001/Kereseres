@@ -32,11 +32,17 @@ public class ZereginaAtazakMB implements Serializable {
 	}
 
 	public void zereginBerriaSartuDB(ZereginaFormMB form, ZereginakViewMB view, TaldeAtazakMB atazakT, SesioaAtazakMB atazakS) {
-		ErlazioaE erlazioa = new ErlazioaE(0, atazakS.getErabiltzailea(), atazakT.getErabiltzailearenTaldea());
-		System.out.println(erlazioa.getErabiltzaileaE().getIzena());
-		KereserE kereser = new KereserE(0,false,false,form.getIzena(),form.getOrdukop(),erlazioa);
-		System.out.println(kereser.getIzena());
-		orokorraEJB.zereginBerriaSartuDB(kereser,erlazioa);
+		List<ErlazioaE> erlazioaDB = orokorraEJB.erlazioakBilatuDB(atazakS.getErabiltzailea().getIdErabiltzailea(), atazakT.getErabiltzailearenTaldea().getIdTaldea());
+		
+		if(erlazioaDB.size()==0) {
+			ErlazioaE erlazioa = new ErlazioaE(0, atazakS.getErabiltzailea(), atazakT.getErabiltzailearenTaldea());
+			KereserE kereser = new KereserE(0,false,false,form.getIzena(),form.getOrdukop(),erlazioa);
+			orokorraEJB.zereginBerriaSartuDB(kereser,erlazioa, 0);
+		}else {
+			KereserE kereser = new KereserE(0,false,false,form.getIzena(),form.getOrdukop(),erlazioaDB.get(0));
+			orokorraEJB.zereginBerriaSartuDB(kereser,erlazioaDB.get(0),1);
+		}
+		
 		form.resetForm();
 		view.resetView();
 	}
@@ -52,6 +58,11 @@ public class ZereginaAtazakMB implements Serializable {
 		orokorraEJB.zereginaEsleitutaJarriDB(kereserDB, idErab,taldeAtazak.getErabiltzailearenTaldea(),view.getErabiltzaileakDB());
 		view.resetView();
 		// form.resetForm();
+	}
+	
+	public void zereginaEzabatuDB(int idKereser, ZereginakViewMB view) {
+		orokorraEJB.zereginaEzabatuDB(idKereser);
+		view.resetView();
 	}
 	
 }

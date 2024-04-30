@@ -56,6 +56,9 @@ public class OrokorraEJB {
 
 	}
 	
+	public List<ErlazioaE> erlazioakBilatuDB(int idErab, int idTaldea){
+		return(List<ErlazioaE>) em.createNamedQuery("ErlazioaE.findErlazioa").setParameter("idErab", idErab).setParameter("idTaldea", idTaldea).getResultList();
+	}
 	public void zereginaEgindaJarriDB(KereserE kereserDB) {
 		kereserDB.setEginda(true);
 		em.merge(kereserDB);
@@ -67,28 +70,24 @@ public class OrokorraEJB {
 	}
 	@SuppressWarnings("unchecked")
 	public void zereginaEsleitutaJarriDB(KereserE kereserDB, int idErab, TaldeaE taldea,List<ErabiltzaileaE> taldeko_erabiltzaileak) {
-		
-		/*ErabiltzaileaE erabiltzailea = em.find(ErabiltzaileaE.class, idErab);
-		 	ErlazioaE erlazioa = new ErlazioaE(0,erabiltzailea,taldea);
-		 	em.persist(erlazioa);
-		 */
-		//System.out.println(taldea.getIzena());
-		
-		//List<ErabiltzaileaE> erabiltzaileak = taldearenErabiltzaileakLortuDB(taldea);
+	
 		List<ErlazioaE> erlazioaDB = em.createNamedQuery("ErlazioaE.findErlazioa").setParameter("idErab", taldeko_erabiltzaileak.get(idErab).getIdErabiltzailea()).setParameter("idTaldea", taldea.getIdTaldea()).getResultList();
 		List<ErlazioaE> erlazioak = em.createNamedQuery("ErlazioaE.findAll").getResultList();
-		
-		//System.out.println(erlazioaDB.get(0).getTaldeaE().getIzena());
 		
 		kereserDB.setEsleituta(true);
 		kereserDB.setErlazioaE(erlazioaDB.get(0));
 		em.merge(kereserDB);
 		
 	}
-	public void zereginBerriaSartuDB(KereserE kereserDB, ErlazioaE erlazioa) {
-		System.out.println("kaixo");
-		em.persist(erlazioa);
-		em.persist(kereserDB);
+	public void zereginBerriaSartuDB(KereserE kereserDB, ErlazioaE erlazioa, int kode) {
+		if(kode==0) {
+			em.persist(erlazioa);
+			em.persist(kereserDB);
+		}else {
+			em.persist(kereserDB);
+		}
+		
+		
 	}
 
 	public void taldeBerriaSortuDB(TaldeaE taldea,ErabiltzaileaE user){
@@ -106,5 +105,12 @@ public class OrokorraEJB {
 		System.out.println(erab.getIzena());
 		ErlazioaE erlazioaDB = new ErlazioaE(0,erab,taldea);
 		em.persist(erlazioaDB);
+	}
+	
+	public void zereginaEzabatuDB(int idKereser) {
+		KereserE kereserDB = em.find(KereserE.class, idKereser);
+		em.remove(kereserDB);
+		
+		
 	}
 }
