@@ -73,6 +73,12 @@
 									<h:commandButton actionListener="#{zereginaAtazakMB.zereginaEsleitutaJarriDB(zereginak,zereginakViewMB,zereginaFormMB.idErab,taldeAtazakMB)}" value="Esleituta jarri" />
 								
 						</h:column>
+						<h:column>
+							<f:facet name="header">Ezabatu</f:facet>
+
+									<h:commandButton actionListener="#{zereginaAtazakMB.zereginaEzabatuDB(zereginak.idKereser,zereginakViewMB)}" value="Ezabatu" />
+								
+						</h:column>
 					</h:dataTable>
 					</h:form>
 			</h:panelGroup>

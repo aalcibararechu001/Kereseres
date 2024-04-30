@@ -1,7 +1,6 @@
 package pl;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -9,7 +8,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import bl.OrokorraEJB;
-import dl.ErabiltzaileaE;
 import dl.ErlazioaE;
 import dl.KereserE;
 import dl.TaldeaE;
@@ -60,8 +58,8 @@ public class ZereginaAtazakMB implements Serializable {
 		// form.resetForm();
 	}
 	
-	public void zereginaEzabatuDB(int idKereser, ZereginakViewMB view) {
-		orokorraEJB.zereginaEzabatuDB(idKereser);
+	public void zereginaEzabatuDB(KereserE zeregina, ZereginakViewMB view) {
+		orokorraEJB.zereginaEzabatuDB(zeregina.getIdKereser());
 		view.resetView();
 	}
 	

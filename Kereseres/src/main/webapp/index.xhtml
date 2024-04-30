@@ -14,9 +14,9 @@
 	<h1>Saioa hasi amorch!</h1>
     <div class="container">
         <h:form>
-        <div><h:inputText value="#{sesioaAtazakMB.username}" id="izena" required="true" requiredMessage="ERROREA: Izena eremua derrigorrezkoa da"/></div>
+        <div>Username:<h:inputText value="#{sesioaAtazakMB.username}" id="izena" required="true" requiredMessage="ERROREA: Izena eremua derrigorrezkoa da"/></div>
         <br />
-         <div><h:inputSecret value="#{sesioaAtazakMB.pasahitza}" type="password" placeholder="Pasahitza" required="true" /></div>   	             
+         <div>Pasahitza:<h:inputSecret value="#{sesioaAtazakMB.pasahitza}" type="password" placeholder="Pasahitza" required="true" /></div>   	             
         	<br />
         	<br />
         	<h:commandButton actionListener="#{sesioaAtazakMB.SaioaHasi()}" value="Saioa hasi" />
