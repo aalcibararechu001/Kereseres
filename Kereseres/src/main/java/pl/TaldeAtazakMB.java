@@ -88,6 +88,9 @@ public class TaldeAtazakMB implements Serializable {
 		redirigir("zereginak.xhtml");
 		return kodea;
 	}
+	public void taldetikAtera() {
+		erabiltzailearenTaldea = null;
+	}
 
 	public void erabiltzaileaTalderaBatu(TaldeaE taldea, SesioaAtazakMB atazak){
 		
