@@ -13,15 +13,13 @@
 <header>
     <div class="user-info">
         <span class="user-photo"></span>
-        <span class="user-name">Nombre de Usuario</span>
+        <span class="user-name"> <h:outputText value="#{sesioaAtazakMB.erabiltzailea.izena}"/></span>
     </div>
     <div class="buttons">
     	<h:form>
     		<h:commandButton class="my-command-button" actionListener="#{sesioaAtazakMB.saioaItxi()}" action="index" value="Saioa Itxi" />
     		<h:commandButton class="my-command-button" actionListener="#{taldeAtazakMB.taldetikAtera()}" action="taldeak" value="Taldea Aldatu" />
     	</h:form>
-        <button class="logout-button">Saioa Itxi</button>
-        <button class="logout-button">Taldea Aldatu</button>
     </div>
 </header>
 <body>
@@ -30,6 +28,7 @@
     
         <div>
             <h2>Esleitutako zereginak</h2>
+            	<h:panelGroup rendered="#{zereginakViewMB.esleitutakoZereginakLortuDB(taldeAtazakMB).size()==0}">Ez dago zereginik esleituta.</h:panelGroup>
             	<h:panelGroup rendered="#{zereginakViewMB.esleitutakoZereginakLortuDB(taldeAtazakMB).size()>0}">
 					<h:dataTable value="#{zereginakViewMB.esleitutakoZereginakLortuDB(taldeAtazakMB)}" var="zereginak">
 						<h:column>
@@ -55,11 +54,12 @@
         </div>
         
       
-        <div>
+        <div >
             <h2>Esleitu gabeko zereginak</h2>
+            	<h:panelGroup rendered="#{zereginakViewMB.esleituGabekoZereginakLortuDB(taldeAtazakMB).size()==0}">Ez dago esleitu gabeko zereginik.</h:panelGroup>
             	<h:panelGroup rendered="#{zereginakViewMB.esleituGabekoZereginakLortuDB(taldeAtazakMB).size()>0}">
             	<h:form>
-					<h:dataTable value="#{zereginakViewMB.esleituGabekoZereginakLortuDB(taldeAtazakMB)}" var="zereginak">
+					<h:dataTable class= "taula" value="#{zereginakViewMB.esleituGabekoZereginakLortuDB(taldeAtazakMB)}" var="zereginak">
 						<h:column>
 							<f:facet name="header">Zeregina</f:facet>
 								#{zereginak.izena}
@@ -69,7 +69,7 @@
 							#{zereginak.ordu_kopurua}
 						</h:column>
 						<h:column>
-							<f:facet name="header">Eginda</f:facet>
+							<f:facet name="header">Esleitu</f:facet>
 								
 									<h:selectOneMenu value="#{zereginaFormMB.idErab}">
 											<f:selectItems value="#{zereginakViewMB.taldearenErabiltzaileakLortuDB(taldeAtazakMB)}" var="erab" itemValue="#{zereginakViewMB.erabiltzaileakLortuDB().indexOf(erab)}" itemLabel="#{erab.izena}"></f:selectItems>

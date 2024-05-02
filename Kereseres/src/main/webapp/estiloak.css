@@ -17,16 +17,24 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+.taula {
+	background-color: #adc0f1;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
 
 /* Estilos para el encabezado */
 /* Estilos para el encabezado */
 header {
-    background-color: rgba(255, 255, 255, 0.5); /* Color de fondo del encabezado */
+    background-color: rgba(255, 255, 255, 1); /* Color de fondo del encabezado */
     color: #000000; /* Color del texto */
     padding: 10px; /* Espaciado interno */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 50px;
+    width: 100%;
 }
 
 /* Estilos para la información del usuario */
@@ -40,7 +48,7 @@ header {
     height: 40px; /* Tamaño de la foto del usuario */
     border-radius: 50%; /* Borde redondeado para la foto del usuario */
     margin-right: 10px; /* Espaciado a la derecha */
-    background-image: url('ARGAZKIAK/ojan.png'); /* URL de la foto del usuario */
+    background-image: url('ARGAZKIAK/user.png'); /* URL de la foto del usuario */
     background-size: cover; /* Ajustar la imagen al contenedor */
 }
 

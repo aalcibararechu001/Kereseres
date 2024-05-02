@@ -13,14 +13,12 @@
 <header>
     <div class="user-info">
         <span class="user-photo"></span>
-        <span class="user-name">Nombre de Usuario</span>
+        <span class="user-name"> <h:outputText value="#{sesioaAtazakMB.erabiltzailea.izena}"/></span>
     </div>
     <div class="buttons">
     	<h:form>
     		<h:commandButton class="my-command-button" actionListener="#{sesioaAtazakMB.saioaItxi()}" action="index" value="Saioa Itxi" />
     	</h:form>
-        <button class="logout-button">Saioa Itxi</button>
-        <button class="logout-button">Taldea Aldatu</button>
     </div>
 </header>
 <body> 
