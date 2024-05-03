@@ -76,7 +76,7 @@ public class TaldeAtazakMB implements Serializable {
 			mezua= "Iadanik badago talde bat izen horrekin. Jarri beste izen bat.";
 		}else {
 			orokorraEJB.taldeBerriaSortuDB(taldea,atazak.getErabiltzailea());
-			redirigir("zereginak.xhtml");
+			redirigir("taldeak.xhtml");
 		}
 		
 		form.resetForm();
@@ -100,6 +100,7 @@ public class TaldeAtazakMB implements Serializable {
 			setMezua("Pasahitza ez da zuzena");
 		}else{
 			orokorraEJB.erabiltzaileaTalderaBatu(taldea, atazak.getErabiltzailea());
+			redirigir("taldeak.xhtml");
 		}
 		
 	}

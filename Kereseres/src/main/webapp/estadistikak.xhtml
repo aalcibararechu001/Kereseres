@@ -8,13 +8,14 @@
 	<link href="estiloak.css" rel="stylesheet" type="text/css" />
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Estatistikak</title>
 </h:head>
-<h:body>
-  <f:metadata>
-        <f:event type="preRenderView" listener="#{EstadistikakViewMB.estatistikak_sortu(taldeAtazakMB)}" />
-    </f:metadata>
+<h:body><!-- 
+    <h:form>
+  	<h:commandButton actionListener="#{estadistikakViewMB.estatistikak_sortu(taldeAtazakMB)}" value="Erakutsi estatistikak" />
+  </h:form>  -->
+  <h:panelGroup rendered="#{estadistikakViewMB.kodea==1}">
   <div class="chart">
     <div class="chart_types">
        <button onclick="setChartType('bar')">Bars</button>
@@ -25,8 +26,8 @@
     </div>
     <canvas id="myChart"></canvas>
  </div>
-
  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
- <script src="ESTATISTIKAK/script.js"></script>
+ <script src= "script.js"></script>
+ </h:panelGroup>
 </h:body>
 </html>
