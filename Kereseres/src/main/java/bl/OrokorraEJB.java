@@ -32,6 +32,10 @@ public class OrokorraEJB {
 	public List<KereserE> egindakoZereginakLortuDB(){
 		return (List<KereserE>) em.createNamedQuery("KereserE.findEginda").getResultList();
 	}
+
+	public List<KereserE> taldekoEgindakoZereginakLortuDB(int idTaldea){
+		return (List<KereserE>) em.createNamedQuery("KereserE.findTaldekoEginda").setParameter("idTaldea", idTaldea).getResultList();
+	}
 	
 	public List<KereserE> esleituGabekoZereginakLortuDB(int idTaldea){
 		return (List<KereserE>) em.createNamedQuery("KereserE.findEsleitzeke").setParameter("idTaldea", idTaldea).getResultList();
