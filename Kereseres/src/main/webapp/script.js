@@ -6,7 +6,7 @@ let myChart;
 let jsonData;
 
 // Send a GET request to load data from the `data.json` file
-fetch("data.json")
+fetch("/opt/wildfly/bin/data.json")
   .then(function(response) {
     if (response.status == 200) {
       return response.json();
