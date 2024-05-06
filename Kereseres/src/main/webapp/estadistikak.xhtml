@@ -4,22 +4,20 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
+<head>
 	<link href="estiloak.css" rel="stylesheet" type="text/css" />
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Estatistikak</title>
-</h:head>
-<h:body><!-- 
-    <h:form>
-  	<h:commandButton actionListener="#{estadistikakViewMB.estatistikak_sortu(taldeAtazakMB)}" value="Erakutsi estatistikak" />
-  </h:form>  -->
-  <h:panelGroup rendered="#{estadistikakViewMB.kodea==1}">
+</head>
+<body>
+   
+ 
   <div class="chart">
     <div class="chart_types">
-       <button onclick="setChartType('bar')">Bars</button>
-       <button onclick="setChartType('line')">Line</button>
+       <button onclick="setChartType('bar')">Barrak</button>
+       <button onclick="setChartType('line')">Lerroa</button>
        <button onclick="setChartType('doughnut')">Doughnut</button>
        <button onclick="setChartType('polarArea')">PolarArea</button>
        <button onclick="setChartType('radar')">Radar</button>
@@ -28,6 +26,5 @@
  </div>
  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
  <script src= "script.js"></script>
- </h:panelGroup>
-</h:body>
+</body>
 </html>

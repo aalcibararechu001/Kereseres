@@ -11,6 +11,9 @@
 
 package bl;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -22,6 +25,7 @@ import dl.ErabiltzaileaE;
 import dl.ErlazioaE;
 import dl.KereserE;
 import dl.TaldeaE;
+import pl.datuak;
 
 
 @Stateless
@@ -59,7 +63,9 @@ public class OrokorraEJB {
 		return (List<ErabiltzaileaE>) em.createNamedQuery("ErlazioaE.findTaldearenErabiltzaileak").setParameter("taldea", taldeaE).getResultList();
 
 	}
-	
+	public List<KereserE> erabiltzailearenEgindakoakLortuDB(int taldea, int erab){
+		return (List<KereserE>) em.createNamedQuery("KereserE.findErabiltzailearenEgindakoak").setParameter("idTaldea",taldea).setParameter("idErab", erab).getResultList();
+	}
 	public List<ErlazioaE> erlazioakBilatuDB(int idErab, int idTaldea){
 		return(List<ErlazioaE>) em.createNamedQuery("ErlazioaE.findErlazioa").setParameter("idErab", idErab).setParameter("idTaldea", idTaldea).getResultList();
 	}
@@ -117,4 +123,42 @@ public class OrokorraEJB {
 		
 		
 	}
+	public void estatistikak_sortu(TaldeaE talde) {	
+		List <ErabiltzaileaE> erabiltzaileak = taldearenErabiltzaileakLortuDB(talde);
+		List<datuak> dataList = new ArrayList<>();
+		for(ErabiltzaileaE erabiltzaile : erabiltzaileak) {
+			List<KereserE> keresereak = erabiltzailearenEgindakoakLortuDB(talde.getIdTaldea(), erabiltzaile.getIdErabiltzailea());
+			int orduak = 0;
+			for (KereserE keresere: keresereak) {
+				orduak+=keresere.getOrdu_kopurua();
+			}
+			String ordu = Integer.toString(orduak);
+			datuak datua = new datuak(erabiltzaile.getIzena(),ordu);
+			dataList.add(datua);
+		}
+		System.out.print("Honea aiau da");
+		String filePath = "/users/1013645/git/Kereseres/Kereseres/src/main/webapp/data.json";		
+		
+        try (FileWriter fileWriter = new FileWriter(filePath, false)) {
+        	fileWriter.write("");
+            String jsonData=listToJson(dataList);
+            fileWriter.write(jsonData);
+        } catch (IOException e) {
+        	System.out.print("Arazoa fitxategia irekitzerakoan.");
+            e.printStackTrace(); // Handle or log the exception as needed
+        }
+	}
+	private String listToJson(List<datuak> lista) {
+        StringBuilder json = new StringBuilder();
+        json.append("[");
+        for (int i = 0; i < lista.size(); i++) {
+            datuak data = lista.get(i);
+            json.append("{\"erabiltzailea\":\"").append(data.getIzena()).append("\",\"orduak\":").append(data.getOrduak()).append("}");
+            if (i < lista.size() - 1) {
+                json.append(",");
+            }
+        }
+        json.append("]");
+        return json.toString();
+    }
 }

@@ -26,7 +26,8 @@ import javax.persistence.Table;
 	@NamedQuery(name="KereserE.findEsleitzeke", query="SELECT k FROM KereserE k WHERE k.esleituta= false AND k.erlazioaE.taldeaE.idTaldea=:idTaldea"),
 	@NamedQuery(name="KereserE.findEsleituta", query="SELECT k FROM KereserE k WHERE k.esleituta = true AND k.eginda= false AND k.erlazioaE.taldeaE.idTaldea=:idTaldea"),
 	@NamedQuery(name="KereserE.findErabiltzailearenak", query="SELECT k FROM KereserE k WHERE k.erlazioaE.erabiltzaileaE.idErabiltzailea= :id_erab"),
-	@NamedQuery(name="KereserE.findTaldekoEginda", query="SELECT k FROM KereserE k WHERE k.erlazioaE.taldeaE.idTaldea=:idTaldea AND k.eginda= true")
+	@NamedQuery(name="KereserE.findTaldekoEginda", query="SELECT k FROM KereserE k WHERE k.erlazioaE.taldeaE.idTaldea=:idTaldea AND k.eginda= true"),
+	@NamedQuery(name="KereserE.findErabiltzailearenEgindakoak", query="SELECT k FROM KereserE k WHERE k.erlazioaE.taldeaE.idTaldea=:idTaldea AND k.eginda= true AND k.erlazioaE.erabiltzaileaE.idErabiltzailea=:idErab")
 })
 
 public class KereserE implements Serializable {

@@ -1,57 +1,52 @@
 package pl;
 
-import java.io.File;
-
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.IOException;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import java.io.FileWriter;
-import java.io.IOException;
-//import com.google.gson.Gson;
-//import com.google.gson.*;
-import pl.datuak;
-
 
 import bl.OrokorraEJB;
-import dl.ErlazioaE;
+import dl.ErabiltzaileaE;
 import dl.KereserE;
-
-import java.io.Serializable;
+import dl.TaldeaE;
 
 @Named
 @ViewScoped
-public class EstadistikakViewMB implements Serializable {
+public class EstadistikakAtazakMB implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@EJB private OrokorraEJB orokorraEJB;
-	private int kodea=0;
 
-	public EstadistikakViewMB() {
+	public EstadistikakAtazakMB() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void estatistikak_sortu(TaldeAtazakMB talde) {
-		if(kodea==1) {
-			kodea=0;
-		}else {
-			kodea=1;
-		}
-		
-		List<KereserE> zereginak = orokorraEJB.taldekoEgindakoZereginakLortuDB(talde.getErabiltzailearenTaldea().getIdTaldea());
+	public void estatistikak_sortu(TaldeaE talde) {	
+		List <ErabiltzaileaE> erabiltzaileak = orokorraEJB.taldearenErabiltzaileakLortuDB(talde);
 		List<datuak> dataList = new ArrayList<>();
-		for(KereserE kereser : zereginak){
-			String orduak = Integer.toString(kereser.getOrdu_kopurua());
-			datuak datua = new datuak(kereser.getIzena(), orduak );
+		for(ErabiltzaileaE erabiltzaile : erabiltzaileak) {
+			List<KereserE> keresereak = orokorraEJB.erabiltzailearenEgindakoakLortuDB(talde.getIdTaldea(), erabiltzaile.getIdErabiltzailea());
+			int orduak = 0;
+			for (KereserE keresere: keresereak) {
+				orduak+=keresere.getOrdu_kopurua();
+			}
+			String ordu = Integer.toString(orduak);
+			datuak datua = new datuak(erabiltzaile.getIzena(),ordu);
 			dataList.add(datua);
 		}
 		System.out.print("Honea aiau da");
-		String filePath = "/users/1009719/git/Kereseres/Kereseres/src/main/webapp/data.json";
-        try (FileWriter fileWriter = new FileWriter(filePath)) {
+		String filePath = "/users/1013645/git/Kereseres/Kereseres/src/main/webapp/data.json";
+		
+		
+		
+        try (FileWriter fileWriter = new FileWriter(filePath, true)) {
+        	fileWriter.write("");
             String jsonData=listToJson(dataList);
             fileWriter.write(jsonData);
         } catch (IOException e) {
@@ -72,12 +67,4 @@ public class EstadistikakViewMB implements Serializable {
         json.append("]");
         return json.toString();
     }
-
-	public int getKodea() {
-		return kodea;
-	}
-
-	public void setKodea(int kodea) {
-		this.kodea = kodea;
-	}
 }

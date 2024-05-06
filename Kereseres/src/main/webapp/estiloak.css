@@ -17,6 +17,19 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
+
+.chart {
+	background-color: rgba(255, 255, 255, 0.5);
+    max-width: 900px;
+    height: 500px;
+    margin: 0 auto;
+    padding: 50px;
+}
+.chart .chart_types {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
 .taula {
 	background-color: #adc0f1;
     width: 80%;

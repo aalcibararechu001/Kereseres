@@ -10,9 +10,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-
 import bl.OrokorraEJB;
-import dl.ErabiltzaileaE;
 import dl.TaldeaE;
 
 @Named
@@ -85,6 +83,7 @@ public class TaldeAtazakMB implements Serializable {
 	public int talderaSartu(TaldeaE taldea) {
 		kodea=0;//iual hemen zoze konprobau berkoa orokorrian
 		erabiltzailearenTaldea = taldea;
+		orokorraEJB.estatistikak_sortu(taldea);
 		redirigir("zereginak.xhtml");
 		return kodea;
 	}

@@ -6,7 +6,7 @@ let myChart;
 let jsonData;
 
 // Send a GET request to load data from the `data.json` file
-fetch("/opt/wildfly/bin/data.json")
+fetch("data.json")
   .then(function(response) {
     if (response.status == 200) {
       return response.json();
@@ -30,10 +30,10 @@ function createChart(data, type) {
     type: type,
     data: {
       // Extract labels and data from the JSON data using the `map` method
-      labels: data.map(row => row.month),
+      labels: data.map(row => row.erabiltzailea),
       datasets: [{
-        label: '# of Income',
-        data: data.map(row => row.income),
+        label: 'Orduak',
+        data: data.map(row => row.orduak),
         borderWidth: 1
       }]
     },
@@ -44,8 +44,8 @@ function createChart(data, type) {
         }
       },
       // Make the chart responsive
-      responsive: false,
-      maintainAspectRatio: false
+      responsive: true,
+      maintainAspectRatio: false,
     }
   });
 }

@@ -92,9 +92,9 @@
     </div>
     <br /> 
     <div>
-		<h:form style="text-align: center;">
-        <button class="button">Estatistikak ikusi</button>
- 		</h:form>
+		<h:form>
+        	<h:commandButton action="estadistikak" value="Estatistikak ikusi" />
+        </h:form>
         
     </div>
    <br />
@@ -108,8 +108,6 @@
 			</h:form>
             	
         </div>
-        <h:form>
-        	<h:commandButton action="estadistikak.xhtml" actionListener="#{estadistikakViewMB.estatistikak_sortu(taldeAtazakMB)}" value="Estatistikak ikusi" />
-        </h:form>
+        
 </body>
 </html>
