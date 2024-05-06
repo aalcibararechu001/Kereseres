@@ -137,7 +137,7 @@ public class OrokorraEJB {
 			dataList.add(datua);
 		}
 		System.out.print("Honea aiau da");
-		String filePath = "/users/1013645/git/Kereseres/Kereseres/src/main/webapp/data.json";		
+		String filePath = "/users/971764/git/Kereseres/Kereseres/src/main/webapp/data.json";		
 		
         try (FileWriter fileWriter = new FileWriter(filePath, false)) {
         	fileWriter.write("");

@@ -7,7 +7,7 @@ body {
   	background-position: center center; /* Posiciona la imagen en el centro de la pantalla */
     font-family: Arial, sans-serif;
     background-color: rgba(255, 255, 255, 0.5);
-    margin: 50px;
+    margin: 0;/*50px;*/
     padding: 0;
 }
 
@@ -40,14 +40,16 @@ body {
 /* Estilos para el encabezado */
 /* Estilos para el encabezado */
 header {
-    background-color: rgba(255, 255, 255, 1); /* Color de fondo del encabezado */
+    background-color: rgba(255, 255, 255, 0.75);
+  /*  background-color: rgba(255, 255, 255, 1); /* Color de fondo del encabezado */
     color: #000000; /* Color del texto */
     padding: 10px; /* Espaciado interno */
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 50px;
-    width: 100%;
+    width: 100%;/* Ancho completo */
+    top: 0; /* Colocar en la parte superior */
 }
 
 /* Estilos para la información del usuario */
@@ -110,7 +112,7 @@ h1 {
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
-    font-family: cursive, sans-serif;
+    font-family: cursive,sans-serif; /*Times New Roman, cursive*/
 }
 /* Estilos para h2 */
 h2 {
