@@ -11,6 +11,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Estatistikak</title>
 </head>
+<header>
+    <div class="user-info">
+        <span class="user-photo"></span>
+        <span class="user-name"> <h:outputText value="#{sesioaAtazakMB.erabiltzailea.izena}"/></span>
+    </div>
+    <div class="buttons">
+    	<h:form>
+    		<h:commandButton class="my-command-button" actionListener="#{sesioaAtazakMB.saioaItxi()}" action="index" value="Saioa Itxi" style="margin-right: 10px;"/>
+    		
+    		<h:commandButton class="my-command-button" actionListener="#{taldeAtazakMB.taldetikAtera()}" action="taldeak" value="Taldea Aldatu" />
+    	</h:form>
+    </div>
+</header>
 <body>
    
  
@@ -24,6 +37,12 @@
     </div>
     <canvas id="myChart"></canvas>
  </div>
+ <div>
+		<h:form>
+        	<h:commandButton action="zereginak" value="Zereginetara itzuli" />
+        </h:form>
+        
+    </div>
  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
  <script src= "script.js"></script>
 </body>
